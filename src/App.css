@@ -1,0 +1,101 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: normal;
+}
+
+.wrapper {
+  width: 650px;
+  padding: 20px;
+}
+
+.title {
+  margin: 20px 0px;
+  font-size: 5.5rem;
+  font-style: italic;
+  border-bottom: 2px solid gray;
+  text-align: center;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+}
+.info__text {
+  font-size: 1.5rem;
+}
+.info__deleteAllTodoButton {
+  padding: 5px 15px;
+  font-size: 1.5rem;
+  background-color: rgb(100, 105, 225);
+  border: none;
+  border-radius: 5px;
+}
+.info__deleteAllTodoButton:hover {
+  opacity: 0.8;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 0px;
+  gap: 30px;
+}
+
+.todo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo__checkbox {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.todo__text {
+  flex: 1;
+  font-size: 1.5rem;
+  padding: 0px 20px;
+  cursor: pointer;
+}
+.done {
+  text-decoration: line-through;
+}
+
+.todo__changeTextInput {
+  font-size: 1.5rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid rgba(100, 105, 225, 0.7);
+  width: 80%;
+}
+
+.todo__deleteButton {
+  width: 30px;
+  height: 30px;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  border: none;
+  transform: rotate(45deg);
+  background-color: rgb(100, 105, 225);
+}
+.todo__deleteButton:hover {
+  opacity: 0.8;
+}
+
+.todo-list__addButton {
+  width: 60px;
+  height: 60px;
+  font-size: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  background-color: rgb(0, 130, 250);
+}
+
+.todo-list__addButton:hover {
+  opacity: 0.8;
+}
