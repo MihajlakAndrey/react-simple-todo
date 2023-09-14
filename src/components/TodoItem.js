@@ -2,28 +2,26 @@ import React, { useEffect, useRef, useState } from 'react'
 
 const TodoItem = ({
   todo,
-  isDoneHandler,
+  toggleIsDoneHandler,
   removeTodoHandler,
   updateTodoHandler,
 }) => {
   const todoInputRef = useRef(null)
 
-  const [updatedTodo, setUpdatedTodo] = useState({ id: null, text: '' })
+  const [selected, setSelected] = useState(false)
 
   const clickOutsideTodoHandler = (e) => {
     if (todoInputRef.current && !todoInputRef.current.contains(e.target)) {
-      updateTodoHandler(updatedTodo)
-      setUpdatedTodo({ id: null, text: '' })
+      setSelected(false)
     }
   }
-
 
   useEffect(() => {
     document.addEventListener('mousedown', clickOutsideTodoHandler)
     return () => {
       document.removeEventListener('mousedown', clickOutsideTodoHandler)
     }
-  }, [updatedTodo])
+  }, [])
 
   return (
     <div className="todo">
@@ -31,25 +29,24 @@ const TodoItem = ({
         className="todo__checkbox"
         type="checkbox"
         checked={todo.isDone}
-        onChange={() => isDoneHandler(todo.id)}
+        onChange={() => toggleIsDoneHandler(todo.id)}
       />
 
-      {updatedTodo.id 
-        ? (<input
+      {selected ? (
+        <input
           className="todo__changeTextInput"
           ref={todoInputRef}
           autoFocus
           type="text"
-          value={updatedTodo.text}
+          value={todo.text}
           onChange={(e) =>
-            setUpdatedTodo({ id: todo.id, text: e.target.value })
+            updateTodoHandler({ ...todo, text: e.target.value })
           }
-        />) 
-        : (<span
-          className={!todo.isDone 
-            ? `todo__text` 
-            : `todo__text done`}
-          onClick={() => setUpdatedTodo({ id: todo.id, text: todo.text })}
+        />
+      ) : (
+        <span
+          className={todo.isDone ? `todo__text done` : `todo__text`}
+          onClick={() => setSelected(true)}
         >
           {todo.text ? todo.text : 'What you want to do?'}
         </span>
